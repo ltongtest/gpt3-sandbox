@@ -31,6 +31,7 @@ jobs:
       - name: Step 4 - Create a virtual environment in root directory
         run: |
           cd /
+          sudo apt install python3.8-venv
           sudo python3 -m venv gpt_lab
           source gpt_lab/bin/activate
             
