@@ -1,0 +1,63 @@
+name: GPT-Sandbox
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+       
+  archive-build-artifacts:
+    runs-on: [self-hosted, Linux, dev-1]
+    steps:
+
+      - name: Step 1 - Download all required software (Python)
+        run: |
+          sudo apt-get update
+          sudo apt-get install python3.8 python3-pip
+
+    
+      - name: Step 2 - Download all required software (Node 16)
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+          export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+
+      - name: Step 3 - Download all required software (yarn)
+        run: |
+          sudo apt install npm
+          sudo npm install --global yarn
+
+
+      - name: Step 4 - Create a virtual environment in root directory
+        run: |
+          cd /
+          python3 -m venv gpt_lab
+          source gpt_lab/bin/activate
+            
+
+      - name: Step 5 - Install requirements
+        run: pip install -r api/requirements.txt
+
+
+      - name: Step 6 - Create file and add secret key from OpenAI Website
+        run: |
+          cd /gpt_lab
+          echo "OPENAI_KEY= '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'" > openai.cfg
+
+      - name: Step 7 - Set environment variable to read the secret key
+        run: export OPENAI_CONFIG=/gpt_lab/openai.cfg
+
+      - name: Step 8 - Run yarn install in the root directory
+        run: |
+          cd /
+          sudo yarn install
+    
+      - name: Step 9 - Test to see if environment is set up properly
+        run: python3 examples/run_latex_app.py
+
+    
+      - name: Step 10 - Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with: 
+          name: assets-for-download
+          path: /gpt_lab
