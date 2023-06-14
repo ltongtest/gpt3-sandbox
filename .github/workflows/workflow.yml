@@ -51,7 +51,8 @@ jobs:
 
 
       - name: Step 7 - Set environment variable to read the secret key
-        run: export OPENAI_CONFIG=/home/devops1/openai.cfg
+        run: export OPENAI_CONFIG=~/openai.cfg
+
 
       - name: Step 8 - Run yarn install in the root directory
         run: |
@@ -59,7 +60,9 @@ jobs:
           sudo yarn install
     
       - name: Step 9 - Test to see if environment is set up properly
-        run: python3 examples/run_latex_app.py
+        run: |
+          export OPENAI_CONFIG=~/openai.cfg
+          python3 examples/run_latex_app.py
 
     
       - name: Step 10 - Use the Upload Artifact GitHub Action
