@@ -7,7 +7,7 @@ on:
 jobs:
        
   archive-build-artifacts:
-    runs-on: [self-hosted, Linux, dev-1]
+    runs-on: [ self-hosted, Linux, dev-1 ]
     steps:
 
       - name: Step 1 - Download all required software (Python)
