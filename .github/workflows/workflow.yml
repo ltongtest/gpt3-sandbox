@@ -12,7 +12,7 @@ jobs:
       - name: Step 1 - Download all required software (Python)
         run: |
           sudo apt-get update
-          sudo apt-get install python3.8 python3-pip
+          sudo apt-get install python3.8 python3-pip -y
 
     
       - name: Step 2 - Download all required software (Node 16)
