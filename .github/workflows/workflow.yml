@@ -46,7 +46,7 @@ jobs:
       - name: Step 6 - Create file and add secret key from OpenAI Website
         run: |
           cd /gpt_lab
-          echo "OPENAI_KEY= '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'" > openai.cfg
+          sudo echo "OPENAI_KEY= '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'" > openai.cfg
 
       - name: Step 7 - Set environment variable to read the secret key
         run: export OPENAI_CONFIG=/gpt_lab/openai.cfg
