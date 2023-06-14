@@ -9,6 +9,10 @@ jobs:
     runs-on: [self-hosted, Linux, dev-1] 
     steps:
 
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+
       - name: Step 1 - Download all required software (Python)
         run: |
           sudo apt-get update
@@ -20,7 +24,6 @@ jobs:
         with:
             node-version: '16'
           
-
 
       - name: Step 3 - Download all required software (yarn)
         run: |
