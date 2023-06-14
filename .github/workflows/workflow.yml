@@ -40,13 +40,14 @@ jobs:
             
 
       - name: Step 5 - Install requirements
-        run: pip install -r api/requirements.txt
+        run: |
+          pip install -r api/requirements.txt
+          pip install werkzeug==2.0.3
 
 
       - name: Step 6 - Create file and add secret key from OpenAI Website
         run: |
           sudo echo "OPENAI_KEY= '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'" > ~/openai.cfg
-          sudo cat ~/openai.cfg
 
 
       - name: Step 7 - Set environment variable to read the secret key
