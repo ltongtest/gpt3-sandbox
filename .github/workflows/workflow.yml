@@ -51,7 +51,7 @@ jobs:
 
 
       - name: Step 7 - Set environment variable to read the secret key
-        run: export OPENAI_CONFIG=~/openai.cfg
+        run: export OPENAI_CONFIG=/home/devops1/openai.cfg
 
       - name: Step 8 - Run yarn install in the root directory
         run: |
