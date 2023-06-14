@@ -45,8 +45,7 @@ jobs:
 
       - name: Step 6 - Create file and add secret key from OpenAI Website
         run: |
-          sudo chmod -R 755 /gpt_lab
-          cd /gpt_lab
+          sudo cd /gpt_lab
           sudo echo "OPENAI_KEY= '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'" > openai.cfg
           sudo cat openai.cfg
 
