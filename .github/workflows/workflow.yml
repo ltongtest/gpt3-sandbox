@@ -27,7 +27,7 @@ jobs:
 
       - name: Step 3 - Download all required software (yarn)
         run: |
-          sudo apt install npm
+          sudo apt install npm -y
           sudo npm install --global yarn
 
 
