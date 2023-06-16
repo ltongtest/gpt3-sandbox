@@ -62,7 +62,7 @@ jobs:
 
       - name: Step 9 - Test to see if environment is set up properly
         run: |
-          npm i react-scripts
+          yarn add react-scripts
           env
           export OPENAI_CONFIG=~/openai.cfg
           python3 examples/run_latex_app.py
