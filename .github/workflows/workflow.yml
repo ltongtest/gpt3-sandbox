@@ -6,7 +6,7 @@ on:
 
 jobs:
   archive-build-artifacts:
-    runs-on: [self-hosted, Linux, dev-1] 
+    runs-on: [self-hosted, Linux, dev-2] 
     steps:
 
       - name: Check out repository code
@@ -59,8 +59,10 @@ jobs:
           cd /
           sudo yarn install
     
+
       - name: Step 9 - Test to see if environment is set up properly
         run: |
+          env
           export OPENAI_CONFIG=~/openai.cfg
           python3 examples/run_latex_app.py
 
